@@ -196,7 +196,7 @@ function initializeDragAndDrop() {
         }
 
         // Invoke the mover() method
-        const targetId = afterElement ? afterElement.id : -1;
+        const targetId = afterElement  != null? afterElement.id : -1;
         move(dragging.id, targetId);
     });
 }

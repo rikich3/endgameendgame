@@ -59,7 +59,6 @@ public class PlayListController {
   @DeleteMapping("/move/{index}/{indexFinal}")
   public void moveMusic(@PathVariable String index, @PathVariable String indexFinal) {
     lista.move(index, indexFinal);
-    System.out.println("Música movida de: " + index + " a " + indexFinal);
     //System.out.println(lista.print());
   }
 }

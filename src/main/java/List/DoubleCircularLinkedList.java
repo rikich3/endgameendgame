@@ -16,7 +16,10 @@ public class DoubleCircularLinkedList<E> {
     }
 //Inserta el elemento al final de la cola
     public void insert(E x){
-
+        if(hash.get(x.toString()) != null){     
+            System.out.println("Ya exste");
+            return;
+        }
         System.out.println("-----------------");
         System.out.println("llamando al insert");
         
@@ -40,6 +43,7 @@ public class DoubleCircularLinkedList<E> {
             System.out.print(current.getData() + ", ");
             current = current.getRight();
         }while (current != head);
+        print();
     }
 
     public void delete(E x){
@@ -51,6 +55,7 @@ public class DoubleCircularLinkedList<E> {
             hash.remove(x.toString());//Se elimina en el hash   
             size--;
         }
+        print();
     }
 
     private void deleteNode(Node<E> nod){
@@ -69,6 +74,7 @@ public class DoubleCircularLinkedList<E> {
     }
 
     public void move(String origen, String fin){//Recibe los id de los objeto musica 
+        System.out.println("De " + origen + " a " + fin);
         Node<E> aux = hash.get(origen);
         deleteNode(aux);
 
@@ -77,6 +83,8 @@ public class DoubleCircularLinkedList<E> {
         }else{
             insertBefore(aux, hash.get(fin));
         }
+        System.out.println("-----------------");
+        print();
     }
 
     public int[] getList(){
@@ -103,7 +111,6 @@ public class DoubleCircularLinkedList<E> {
         nod.setLeft(head);
         head.getRight().setLeft(nod);
         head.setRight(nod);
-        
     }
 //Inserta nod al lado izquierdo de next
     private void insertBefore(Node<E> nod, Node<E> next){
@@ -128,26 +135,20 @@ public class DoubleCircularLinkedList<E> {
     }
     public static void main(String[] args) {
         //Base de datos
-        //Reader r = new Reader();
-        //ArrayList<Music> music = r.getData();
-        DoubleCircularLinkedList <Integer> l = new DoubleCircularLinkedList<>();
+        Reader r = new Reader();
+        MyArrayList<Music> music = r.getData();
+        DoubleCircularLinkedList <Music> l = new DoubleCircularLinkedList<>();
         System.out.println("insertando: ");
         for (int i = 0; i < 10; i++) {
-            l.insert(i);
+            l.insert(music.get(i));
             System.out.println("Termino de insertar uno ");
         }
-
-       
         l.print();
-        l.move("0", "9");
+        l.delete(music.get(0));
         l.print();
-
-        l.move("5", "1");
+        l.move("1", "9");
+        l.move("5" , "8");
         l.print();
-        l.move("4", "0");
-        l.print();
-
-
     }
     
 }

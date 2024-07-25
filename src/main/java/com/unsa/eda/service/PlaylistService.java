@@ -19,8 +19,6 @@ public class PlaylistService {
     private DoubleCircularLinkedList<Music> lista = new DoubleCircularLinkedList<>();
     private Reader r = new Reader();
     private MyArrayList<Music> datos = r.getData();
-
-    
   
    public String addMusic(String id) {
     lista.insert(datos.get(Integer.valueOf(id)));
