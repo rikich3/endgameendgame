@@ -77,7 +77,6 @@ public class DoubleCircularLinkedList<E> {
         System.out.println("De " + origen + " a " + fin);
         Node<E> aux = hash.get(origen);
         deleteNode(aux);
-
         if(fin.equalsIgnoreCase("-1")){
             insertLast(aux);
         }else{

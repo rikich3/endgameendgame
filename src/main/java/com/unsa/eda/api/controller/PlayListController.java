@@ -19,6 +19,7 @@ import List.MyArrayList;
 @RestController
 @RequestMapping("/playlist")
 public class PlayListController {
+  private static int counterMove = 0;
   private DoubleCircularLinkedList<Music> lista = new DoubleCircularLinkedList<>();
   //delete this
   
@@ -59,6 +60,9 @@ public class PlayListController {
   @DeleteMapping("/move/{index}/{indexFinal}")
   public void moveMusic(@PathVariable String index, @PathVariable String indexFinal) {
     lista.move(index, indexFinal);
+    System.out.println("----------");
+    System.out.println("Hemos movido " + counterMove + " veces.");
+    counterMove++;
     //System.out.println(lista.print());
   }
 }
