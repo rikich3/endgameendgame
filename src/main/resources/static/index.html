@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
+
+</head>
+<body>
+  <div class="header">
+    <div class="site-header">
+      
+      <h1>▶ EPISPLAYER</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <button class="play-button">▶</button>
+      <h1>EPISPLAYER</h1>
+    </header>
+    <section class="content">
+      <div class="my-list" id="playlist">
+        
+        <h2>My List</h2>
+        <!-- The elements of the playlist should look like this -->
+        <!-- <div class="playlist-song" id="{'p' + music.id}">
+          <button class="move-button" onmouseup=move(event)> onmousedown = setIndex(event)*</button>
+          this reads the id of the element and sets it on a global variable when it is mousedown and
+          when it is mouseup will get the second id from the element and will call the api endopoint
+          /playlist/move/{index}/{event.target.id.substring(1)}
+          <img src="{imgURL}" alt="Img-musica"> // it needs to scale to fit the container
+          <div class="song-info">
+            <p>{music.title}</p>
+            <p>{music.artist}</p>
+          </div>
+          <button class="delete-button" id="1" onclick="remove(event)">X</button> calls playlist/delete/id
+        </div> -->
+      </div>
+
+      <div class="categories" id="vistas">
+        <!--Drop menu-->
+        <div class="dropdown">
+          <button class="dropbtn">Categorías</button>
+          <div class="dropdown-content">
+            <button class="categoria" onclick="getPopularidad()">Popularidad</button>
+            <button class="categoria" onclick="getDuracion()">Duracion</button>
+            <button class="categoria" onclick="getFecha()">Fecha</button> 
+            <!-- this methods call the api to load the new elements and draw them
+             getPopularidad() -> vistas/popularidad/0
+              getDuracion() -> vistas/duracion/0
+              getFecha() -> vistas/fecha/0
+            -->
+          </div>
+        </div>
+        <!--End drop menu-->
+        <div class="musicBoxList" id="musicBoxList">
+          
+          <!-- <div class = "musicBoxVista" id = "{'v' + music.id}">
+            style
+              list with overlowing scroller, of music box containers
+            scripts
+              at the beginning it will be filled with 20 elements that will get from
+              the api endpoint response: /vistas/popularidad/0
+            elements of music box
+              button that requests post add/music/{elementID}
+              and updates playlist elements
+              the response contains a musicData object that has a music field, we only need the track name and the album name
+              and the imgURL field, which is a string with the url resouce for the track image that we will use to draw on the
+              music box
+            
+              <button id="nextBatch" onclick = loadNextBatch()> This method keeps track of the current batch it is displaying
+              <button id="previousBatch" onclick = loadpreviousBatch()> same as net but only visible when the batch is > 0
+          </div>  -->
+        </div>
+    </section>
+  </div>
+</body>
+</html>

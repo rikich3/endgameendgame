@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse Events Example</title>
+</head>
+<body>
+    <button id="myButton1">Click Me</button>
+    <button id="myButton2">Click Me</button>
+
+    <script>
+
+      var first, second;
+
+        document.getElementById("myButton1").onclick = function() {
+            console.log("Button1 clicked!");
+
+        };
+
+        document.getElementById("myButton1").onmousedown = function(event) {
+            console.log("Mouse button1 pressed down!");
+            first = event.target.id;
+        };
+
+        document.getElementById("myButton1").onmouseup = function() {
+            console.log("Mouse button1 released!");
+            second = event.target.id;
+            console.log("now we have an starting position " + first + " and a final position " + second);
+        };
+        document.getElementById("myButton2").onclick = function() {
+          console.log("Button2 clicked!");
+      };
+
+      document.getElementById("myButton2").onmousedown = function() {
+          console.log("Mouse button pressed down!");
+          first = event.target.id;
+      };
+
+      document.getElementById("myButton2").onmouseup = function(event) {
+          console.log("Mouse button released!");
+          second = event.target.id;
+          console.log("now we have an starting position " + first + " and a final position " + second);
+      };
+    </script>
+</body>
+</html>

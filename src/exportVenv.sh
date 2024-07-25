@@ -1,0 +1,3 @@
+#!/bin/bash
+export MY_APP_CLIENT_ID=8f6fcb6c81684d88b6f479c7f77dbe21
+export MY_APP_CLIENT_SECRET=91254e810a394a9bbc173e3f1a1e8d36
