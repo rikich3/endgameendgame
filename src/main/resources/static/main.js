@@ -1,14 +1,13 @@
     let currentBatch = 0;
     let selectedIndex = null;
-
+    let categoria = "popularidad"
     document.addEventListener('DOMContentLoaded', function() {
         loadPlaylist();
         getPopularidad(); // Vista por defecto
     });
-
     //Sección categoria---------------------------------------
-
     function loadCategory(endpoint) {
+        console.log("intentando encontrar el recurso en " + endpoint)
         fetch(endpoint)
         .then(response => response.json())
         .then(data => {
@@ -34,45 +33,39 @@
         })
         .catch(error => console.error('Error:', error));
     }
-
-
     // Carga los siguientes elementos
     function loadNextBatch(endpoint) {
         currentBatch++;
         //endpoint(popularidad, duracion, fecha)
-        loadCategory(`${endpoint}/${currentBatch}`);
+        loadCategory(`${endpoint}/${categoria}/${currentBatch}`);
     }
-
     // Carga los elementos anteriores
     function loadPreviousBatch(endpoint) {
         if (currentBatch > 0) {
             currentBatch--;
-            loadCategory(`${endpoint}/${currentBatch}`);
+            loadCategory(`${endpoint}/${categoria}/${currentBatch}`);
         }
     }
-
     //Tipo de vistas 
     function getPopularidad() {
         loadCategory('/vistas/popularidad/0');
+        categoria = "popularidad";
     }
-
     function getDuracion() {
         loadCategory('/vistas/duracion/0');
+        categoria = "duracion";
     }
-
     function getFecha() {
         loadCategory('/vistas/fecha/0');
+        categoria = "fecha";
     }
-
     //Sección Playlist -------------------------------------------------------------------------------
-
     function loadPlaylist() {
         fetch('/playlist/list')
         .then(response => response.json())
         .then(data => {
             const playlistContainer = document.getElementById('playlist');
             playlistContainer.innerHTML = '<h2>My List</h2>';
-
             console.log(data);
             data.forEach(music => {
                 let musica = music.cancion;
@@ -95,8 +88,6 @@
         })
         .catch(error => console.error('Error:', error));
     }
-
-
     // FUNCIONES
     function addToPlaylist(musicId) {
         fetch(`/playlist/add/${musicId}`, {
@@ -112,7 +103,6 @@
         })
         .catch(error => console.error('Error:', error));
     }
-
     function remove(event) {
         const songId = event.target.id;
         fetch(`/playlist/remove/${songId}`, {
@@ -128,7 +118,6 @@
         })
         .catch(error => console.error('Error:', error));
     }
-
     function move(origenId, targetId) {
         fetch(`/playlist/move/${origenId.slice(1)}/${targetId.slice(1)}`, {
             method: 'DELETE',       
@@ -143,13 +132,10 @@
         })
         .catch(error => console.error('Error:', error));
     }
-    
     //Funcion para arrastrar los elementos 
-
     function initializeDragAndDrop() {
         const draggables = document.querySelectorAll('.draggable');
         const container = document.querySelector('.my-list');
-
         if (!container === 0) {
             console.error('contenedor no encontrado.');
             return;
@@ -158,21 +144,17 @@
             console.error('Draggable element not found.');
             return;
         }
-
         let draggedElement = null;
-
         draggables.forEach(draggable => {
             draggable.addEventListener('dragstart', () => {
                 draggedElement = draggable;
                 draggable.classList.add('dragging');
             });
-
             draggable.addEventListener('dragend', () => {
                 draggable.classList.remove('dragging');
                 draggedElement = null;
             });
         });
-
         container.addEventListener('dragover', e => {
             e.preventDefault();
             const afterElement = getDragAfterElement(container, e.clientY);
@@ -183,7 +165,6 @@
                 container.insertBefore(dragging, afterElement);
             }
         });
-
         // container.addEventListener('drop', e => {
         //     e.preventDefault();
         //     const afterElement = getDragAfterElement(container, e.clientY);
@@ -203,13 +184,11 @@
             } else {
                 container.insertBefore(dragging, afterElement);
             }
-
             // Invoke the mover() method
             //const targetId = afterElement  != null? afterElement.id : -1;
             move(dragging.id, afterElement.id);
         });
     }
-
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
 

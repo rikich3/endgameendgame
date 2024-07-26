@@ -16,7 +16,7 @@ public class VistasOrdenadasService {
     private BPLus<Integer, MusicData> duracion;
     private BPLus<Integer, MusicData> fecha;
     private final int batchSize = 20;
-    private final int dockerSize = 100;  
+    private final int dockerSize = 1000;  
     @Autowired
     VistasOrdenadasService(MusicDataService mds){
         this.mds = mds;

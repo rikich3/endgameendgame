@@ -11,7 +11,6 @@ public class BPLus<T extends Comparable<T>, V >  {
         this.orden = orden;
         this.root = null;
         this.head = null;
-        
     }
 
     public void insertar(T key, V value) {
